@@ -35,8 +35,8 @@ router.post("/", async (req, res) => {
         responseClient(res, 200, 0, "login successfully.", data);
         return;
       }
-      responseClient(res, 400, 1, "username or password is not valid.");
     }
+    responseClient(res, 400, 1, "username or password is not valid.");
   } catch (e) {
     responseClient(res);
   }

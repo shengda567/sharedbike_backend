@@ -12,6 +12,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    let usersList = await userData.getAllUsers();
+    res.json(usersList);
+  } catch (e) {
+    res.status(404).json({ error: "User not found" });
+  }
+});
+
 router.get("/userInfo", function (req, res) {
   if (req.session.userInfo) {
     responseClient(res, 200, 0, "", req.session.userInfo);
@@ -49,21 +58,23 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  let searchResult = false;
   try {
-    const newUser = await userData.getAllUsers();
-    for (let i in newUser) {
-      console.log(newUser[i]);
-      if (
-        newUser[i].username == userInfo.username &&
-        newUser[i].password == userInfo.password
-      ) {
-        searchResult = true;
-      }
-    }
-    res.json(searchResult);
+    let newUser = await userData.addUser(
+      userInfo.username,
+      userInfo.password,
+      userInfo.gender,
+      userInfo.age,
+      userInfo.status,
+      userInfo.hobby,
+      userInfo.marriage,
+      userInfo.birthday,
+      userInfo.address
+    );
+    res.json(newUser);
+
+    //res.redirect("posts/");
   } catch (e) {
-    res.sendStatus(500);
+    res.status(500).json({ error: e });
   }
 });
 

@@ -1,7 +1,7 @@
-const dbConnection = require('../config/mongoConnection');
-const data = require('../data/');
+const dbConnection = require("../config/mongoConnection");
+const data = require("../data/");
 const cities = data.cities;
-
+const users = data.users;
 
 async function main() {
   const db = await dbConnection();
@@ -12,10 +12,8 @@ async function main() {
     2,
     2,
     77,
-    "Lime",
-    [{user_name: "Steven Davis",
-      user_id: 10001}
-    ],
+    "Lime1",
+    [{ user_name: "Steven Davis", user_id: 10001 }],
     "2006-06-06 07:47:27",
     "Christopher Johnson",
     1520476737000
@@ -26,10 +24,8 @@ async function main() {
     1,
     1,
     77,
-    "Lime",
-    [{user_name: "Steven Davis2",
-      user_id: 10002}
-    ],
+    "Lime1",
+    [{ user_name: "Steven Davis2", user_id: 10002 }],
     "2006-06-06 07:47:27",
     "Christopher Johnson",
     1520476737000
@@ -40,22 +36,50 @@ async function main() {
     2,
     1,
     77,
-    "Lime",
-    [{user_name: "Steven Davis3",
-      user_id: 10003}
-    ],
+    "Lime2",
+    [{ user_name: "Steven Davis3", user_id: 10003 }],
     "2006-06-06 07:47:27",
     "Christopher Johnson",
     1520476737000
   );
-  
 
+  await users.addUser(
+    "shengda",
+    "shengda",
+    "male",
+    30,
+    "manager",
+    "playing games",
+    true,
+    "1990-02-08",
+    "81 graham street"
+  );
 
+  await users.addUser(
+    "shengda1",
+    "shengda1",
+    "male",
+    30,
+    "employee",
+    "playing games",
+    true,
+    "1990-02-08",
+    "81 graham street"
+  );
 
+  await users.addUser(
+    "shengda2",
+    "shengda2",
+    "male",
+    30,
+    "administrator",
+    "playing games",
+    true,
+    "1990-02-08",
+    "81 graham street"
+  );
 
-  
-
-  console.log('Done seeding database');
+  console.log("Done seeding database");
 
   await db.serverConfig.close();
 }

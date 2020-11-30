@@ -52,7 +52,7 @@ async function main() {
     30,
     "manager",
     "playing games",
-    true,
+    "not married",
     "1990-02-08",
     "81 graham street"
   );
@@ -64,7 +64,7 @@ async function main() {
     30,
     "employee",
     "playing games",
-    true,
+    "not married",
     "1990-02-08",
     "81 graham street"
   );
@@ -76,7 +76,7 @@ async function main() {
     30,
     "administrator",
     "playing games",
-    true,
+    "not married",
     "1990-02-08",
     "81 graham street"
   );

@@ -40,7 +40,7 @@ let exportedMethods = {
     const employeesCollection = await users();
 
     return await employeesCollection
-      .findOne({
+      .find({
         $and: [{ username: username }, { status: status }],
       })
       .toArray();

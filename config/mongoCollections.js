@@ -19,4 +19,5 @@ let getCollectionFn = (collection) => {
 module.exports = {
   cities: getCollectionFn("cities"),
   users: getCollectionFn("users"),
+  orders: getCollectionFn("orders"),
 };

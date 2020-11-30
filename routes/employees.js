@@ -66,6 +66,10 @@ router.post("/update", async (req, res) => {
       updatedObject.status = requestBody.status;
     if (requestBody.sex && requestBody.sex !== oldEmployee.gender)
       updatedObject.gender = requestBody.sex;
+    if (requestBody.hobby && requestBody.hobby !== oldEmployee.hobby)
+      updatedObject.hobby = requestBody.hobby;
+    if (requestBody.marriage && requestBody.marriage !== oldEmployee.marriage)
+      updatedObject.marriage = requestBody.marriage;
     if (requestBody.birthday && requestBody.birthday !== oldEmployee.birthday)
       updatedObject.birthday = requestBody.birthday;
     if (requestBody.address && requestBody.address !== oldEmployee.address)
@@ -94,9 +98,11 @@ router.post("/update", async (req, res) => {
       let newUser = await employeesData.addEmployees(
         userInfo.username,
 
-        userInfo.gender,
+        userInfo.sex,
 
         userInfo.status,
+        userInfo.hobby,
+        userInfo.marriage,
 
         userInfo.birthday,
         userInfo.address

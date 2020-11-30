@@ -58,27 +58,25 @@ let exportedMethods = {
     });
   },
 
-  async addEmployees(username, gender, status, birthday, address) {
+  async addEmployees(
+    username,
+    gender,
+    status,
+    hobby,
+    marriage,
+    birthday,
+    address
+  ) {
     const userCollection = await users();
     let tIndex = birthday.indexOf("T");
     birthday = birthday.substring(0, tIndex);
 
-    let parsedGender = gender == 2 ? "F" : "M";
-
-    const obj = {
-      1: "Entrepreneur",
-      2: "Employee",
-      3: "Engineer",
-      4: "Manager",
-      5: "Administrator",
-    };
-
-    let parsedStatus = obj[status];
-
     let newUser = {
       username,
-      gender: parsedGender,
-      status: parsedStatus,
+      gender,
+      status,
+      hobby,
+      marriage,
       birthday,
       address,
       //_id: uuid(),
@@ -101,8 +99,11 @@ let exportedMethods = {
     address
   ) {
     const userCollection = await users();
+
     let tIndex = birthday.indexOf("T");
-    birthday = birthday.substring(0, tIndex);
+    if (tIndex !== -1) {
+      birthday = birthday.substring(0, tIndex);
+    }
 
     let newUser = {
       username,
@@ -161,6 +162,12 @@ let exportedMethods = {
 
     if (updatedEmployee.gender) {
       updatedPostData.gender = updatedEmployee.gender;
+    }
+    if (updatedEmployee.hobby) {
+      updatedPostData.hobby = updatedEmployee.hobby;
+    }
+    if (updatedEmployee.marriage) {
+      updatedPostData.marriage = updatedEmployee.marriage;
     }
     if (updatedEmployee.birthday) {
       let tIndex = updatedEmployee.birthday.indexOf("T");
